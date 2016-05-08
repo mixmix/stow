@@ -4,9 +4,9 @@ exports.up = function(knex, Promise) {
   console.log('create table')
 
   return knex.schema.createTableIfNotExists('feedback', function(table) {
-      table.increments('feedback_ID')
-      table.integer('feedbacker_ID')
-      table.integer('poster_ID')
+      table.increments('id')
+      table.integer('userId')
+      table.integer('listingId')  // this lets you find listing and poster
       table.string('comment')
       table.integer('rating')
       table.timestamps()

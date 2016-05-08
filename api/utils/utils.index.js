@@ -1,9 +1,9 @@
-
+// rename called index.js
 module.exports = {
 
   getAllListings: require('./getAllListings'),
   getUserById: require('./getUserById'),
-  getUserByListingId: require('./getUserById'),
+  getUserByListingId: require('./getUserById'),  // make name the same
   getUserByUsername: require('./getUserByUsername'),
   createUser: require('./createUser'),
   saveListing: require('./saveListing'),

@@ -13,9 +13,10 @@ function getUserByListingId(listingID){ ///refactor to use a join
       user_ID: listerID
     })
   })
-  .then(function(data){
-    return data
+  .then(function(userData){
+    return userData
   })
+  .catch()  // add some error catching
 }
 
 module.exports = getUserByListingId

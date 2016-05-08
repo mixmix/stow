@@ -16,33 +16,46 @@ class Login extends Component {
       password: this.refs.password.value
     }
 
-    loginOrSignUp('/login', formData, this.props.setCurrentUser, this.mount)
+    //loginOrSignUp('/login', formData, this.props.setCurrentUser, this.mount)
+
+    request.post('/login')
+      .send({username, password})
+      .end( (err,res)=>{
+        if (err) this.setState = { hasError: true}
+      })
   }
 
-  mount() {
-    ReactDOM.render(<p className='onError'>Username or password is incorrect</p>, document.getElementById('err'))
-  }
+  //Feedback : do this by toggling state.hasError
+  //
+  //mount() {
+    //ReactDOM.render(<p className='onError'>Username or password is incorrect</p>, document.getElementById('err'))
+  //}
 
-  unmount() {
-    ReactDOM.unmountComponentAtNode(document.getElementById('err'))
-  }
+  //unmount() {
+    //ReactDOM.unmountComponentAtNode(document.getElementById('err'))
+  //}
 
-  componentWillUnmount() {
-    this.unmount()
-  }
+  //componentWillUnmount() {
+    //this.unmount()
+  //}
 
   render() {
+    const errorP = <p className='onError'>Username or password is incorrect</p>
+
     return (
       <div className="row-sm-12 row-centered text-centre">
-      <div className="jumbotron col-sm-4 text-center col-centered">
-        <form className="form-signin">
-          <h2 className="form-signin-heading">Please login </h2>
-          <input type="username" id="inputUsername" className="form-control" placeholder="Your username" ref='username' required autofocus/>
-          <div id='err'></div>
-          <input type="password" id="inputPassword" className="form-control" placeholder="Password" ref='password' required/>
-          <button type="button" className="btn btn-lg btn-primary" onClick={this.handleSubmit.bind(this)}>Login</button>
-        </form>
-      </div>
+        <div className="jumbotron col-sm-4 text-center col-centered">
+          <form className="form-signin">
+            <h2 className="form-signin-heading">Please login </h2>
+            <input type="username" id="inputUsername" className="form-control" placeholder="Your username" ref='username' required autofocus/>
+            <div id='err'></div>
+            <input type="password" id="inputPassword" className="form-control" placeholder="Password" ref='password' required/>
+            <button type="button" className="btn btn-lg btn-primary" onClick={this.handleSubmit.bind(this)}>Login</button>
+          </form>
+        </div>
+        {
+          this.state.hasError ? {errorP} : ''
+        }
       </div>
     )
   }

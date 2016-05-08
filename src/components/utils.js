@@ -39,6 +39,14 @@ export const checkLogIn = (currUser, target) => {
   }
 }
 
+function myCallback(err, data) {
+
+}
+
+error case : myCallback(err)
+success case : myCallback(null,data)
+
+
 export const loginOrSignUp = (action, formData, cbSuccess, cbError) => {
   request
     .post(action)
